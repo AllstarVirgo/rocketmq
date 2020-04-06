@@ -134,6 +134,7 @@ public class SendMessageProcessor extends AbstractSendMessageProcessor implement
             return response;
         }
 
+
         String newTopic = MixAll.getRetryTopic(requestHeader.getGroup());
         int queueIdInt = Math.abs(this.random.nextInt() % 99999999) % subscriptionGroupConfig.getRetryQueueNums();
 
@@ -174,7 +175,7 @@ public class SendMessageProcessor extends AbstractSendMessageProcessor implement
         int delayLevel = requestHeader.getDelayLevel();
 
         int maxReconsumeTimes = subscriptionGroupConfig.getRetryMaxTimes();
-        if (request.getVersion() >= MQVersion.Version.V3_4_9.ordinal()) {
+         if (request.getVersion() >= MQVersion.Version.V3_4_9.ordinal()) {
             maxReconsumeTimes = requestHeader.getMaxReconsumeTimes();
         }
 
@@ -295,7 +296,7 @@ public class SendMessageProcessor extends AbstractSendMessageProcessor implement
     private RemotingCommand sendMessage(final ChannelHandlerContext ctx,
                                         final RemotingCommand request,
                                         final SendMessageContext sendMessageContext,
-                                        final SendMessageRequestHeader requestHeader) throws RemotingCommandException {
+                                        final SendMessageRequestHeader requestHeader) throws RemotingCommandException  {
 
         final RemotingCommand response = RemotingCommand.createResponseCommand(SendMessageResponseHeader.class);
         final SendMessageResponseHeader responseHeader = (SendMessageResponseHeader)response.readCustomHeader();

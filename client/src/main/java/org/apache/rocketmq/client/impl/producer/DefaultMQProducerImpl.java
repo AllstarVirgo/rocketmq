@@ -639,7 +639,7 @@ public class DefaultMQProducerImpl implements MQProducerInner {
         TopicPublishInfo topicPublishInfo = this.topicPublishInfoTable.get(topic);
         if (null == topicPublishInfo || !topicPublishInfo.ok()) {
             this.topicPublishInfoTable.putIfAbsent(topic, new TopicPublishInfo());
-            this.mQClientFactory.updateTopicRouteInfoFromNameServer(topic);
+            this.mQClientFactory.updateTopicRouteInfoFromNameServer(topic, true, this.defaultMQProducer);
             topicPublishInfo = this.topicPublishInfoTable.get(topic);
         }
 
